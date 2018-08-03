@@ -17,60 +17,42 @@ const answers = ["Liquorice chocolate gummi bears cake sweet.",
     "Pastry soufflé cake cotton candy jelly-o topping pie candy lollipop."
 ];
 
-class QuestionsToType extends React.Component {
-    render() {
-        const index = this.props.index;
-        const item = this.props.item;
 
-        return (
-            <div key={`question-${index}`}>
-                <label htmlFor={`question-${index}`}>Question text</label>
-                <input type="txt" id={`question-${index}`} value={item}/>
-                <button>Add</button>
-            </div>
-        )
-    }
+function QuestionsToType(props) {
+    return (
+        <div key={`question-${props.index}`}>
+            <label htmlFor={`question-${props.index}`}>Question text</label>
+            <input type="txt" id={`question-${props.index}`} value={props.item}/>
+            <button>Add</button>
+        </div>
+    )
 }
 
-class AnswersToType extends React.Component {
-    render() {
-        const index = this.props.index;
-        const item = this.props.item;
-
-        return (
-            <div key={`answer-${index}`}>
-                <label htmlFor={`answer-${index}`}>Answer text</label>
-                <input type="txt" id={`answer-${index}`} value={item}/>
-                <button>Add</button>
-            </div>
-        )
-    }
+function AnswersToType(props) {
+    return (
+        <div key={`answer-${props.index}`}>
+            <label htmlFor={`answer-${props.index}`}>Answer text</label>
+            <input type="txt" id={`answer-${props.index}`} value={props.item}/>
+            <button>Add</button>
+        </div>
+    )
 }
 
-class QuestionsToShow extends React.Component {
-    render() {
-        const index = this.props.index;
-        const item = this.props.item;
 
-        return (
-            <div key={`questionToShow-${index}`}>
-                <div>{item}</div>
-            </div>
-        )
-    }
+function QuestionsToShow(props) {
+    return (
+        <div key={`questionToShow-${props.index}`}>
+            <div>{props.item}</div>
+        </div>
+    )
 }
 
-class AnswersToShow extends React.Component {
-    render() {
-        const index = this.props.index;
-        const item = this.props.item;
-
-        return (
-            <div key={`questionToShow-${index}`}>
-                <div>{item}</div>
-            </div>
-        )
-    }
+function AnswersToShow(props) {
+    return (
+        <div key={`questionToShow-${props.index}`}>
+            <div>{props.item}</div>
+        </div>
+    )
 }
 
 class App extends Component {
@@ -95,7 +77,7 @@ class App extends Component {
                 </div>
                 <div className="see-section">
                     <div>{questions.map((item, index) => <QuestionsToShow index={index} item={item}/>)}</div>
-                    <div>{answers.map((item, index) => <AnswersToShow index={index} item={item} />)}</div>
+                    <div>{answers.map((item, index) => <AnswersToShow index={index} item={item}/>)}</div>
                 </div>
             </div>
         );
