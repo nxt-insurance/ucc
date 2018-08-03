@@ -17,6 +17,62 @@ const answers = ["Liquorice chocolate gummi bears cake sweet.",
     "Pastry soufflé cake cotton candy jelly-o topping pie candy lollipop."
 ];
 
+class QuestionsToType extends React.Component {
+    render() {
+        const index = this.props.index;
+        const item = this.props.item;
+
+        return (
+            <div key={`question-${index}`}>
+                <label htmlFor={`question-${index}`}>Question text</label>
+                <input type="txt" id={`question-${index}`} value={item}/>
+                <button>Add</button>
+            </div>
+        )
+    }
+}
+
+class AnswersToType extends React.Component {
+    render() {
+        const index = this.props.index;
+        const item = this.props.item;
+
+        return (
+            <div key={`answer-${index}`}>
+                <label htmlFor={`answer-${index}`}>Answer text</label>
+                <input type="txt" id={`answer-${index}`} value={item}/>
+                <button>Add</button>
+            </div>
+        )
+    }
+}
+
+class QuestionsToShow extends React.Component {
+    render() {
+        const index = this.props.index;
+        const item = this.props.item;
+
+        return (
+            <div key={`questionToShow-${index}`}>
+                <div>{item}</div>
+            </div>
+        )
+    }
+}
+
+class AnswersToShow extends React.Component {
+    render() {
+        const index = this.props.index;
+        const item = this.props.item;
+
+        return (
+            <div key={`questionToShow-${index}`}>
+                <div>{item}</div>
+            </div>
+        )
+    }
+}
+
 class App extends Component {
 
     handleClickQuestion = (event) => {
@@ -24,35 +80,6 @@ class App extends Component {
     };
 
     render() {
-
-        const QuestionsToType = questions.map((item, index) => {
-            return <div key={`question-${index}`}>
-                <label htmlFor={`question-${index}`}>Question text</label>
-                <input type="txt" id={`question-${index}`} value={item}/>
-                <button>Add</button>
-            </div>
-        });
-
-        const AnswersToType = answers.map((item, index) => {
-            return <div key={`question-${index}`}>
-                <label htmlFor={`answer-${index}`}>Answer text</label>
-                <input type="txt" id={`answer-${index}`} value={item}/>
-                <button>Add</button>
-            </div>
-        });
-
-        const QuestionsToShow = questions.map((item, index) => {
-            return <div key={`questionToShow-${index}`}>
-                <div>{item}</div>
-            </div>
-        });
-
-        const AnswersToShow = questions.map((item, index) => {
-            return <div key={`questionToShow-${index}`}>
-                <div>{item}</div>
-            </div>
-        });
-
 
         return (
             <div>
@@ -62,13 +89,13 @@ class App extends Component {
                         <button>Add answer</button>
                     </div>
                     <div>
-                        <div>{QuestionsToType}</div>
-                        <div>{AnswersToType}</div>
+                        <div>{questions.map((item, index) => <QuestionsToType index={index} item={item}/>)}</div>
+                        <div>{answers.map((item, index) => <AnswersToType index={index} item={item}/>)}</div>
                     </div>
                 </div>
                 <div className="see-section">
-                    <div>{QuestionsToShow}</div>
-                    <div>{AnswersToShow}</div>
+                    <div>{questions.map((item, index) => <QuestionsToShow index={index} item={item}/>)}</div>
+                    <div>{answers.map((item, index) => <AnswersToShow index={index} item={item} />)}</div>
                 </div>
             </div>
         );
