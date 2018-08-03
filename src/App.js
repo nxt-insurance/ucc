@@ -2,28 +2,21 @@ import React, {Component} from 'react';
 import './App.css';
 
 
-const questions = ["Cake gummies carrot cake cake sweet roll muffin.",
-    "Cake lemon drops sugar plum jujubes caramels sesame snaps cake topping.",
-    "Fruitcake powder cupcake chocolate pie wafer sweet roll.",
-    "Chocolate cake macaroon chocolate bar tart sweet roll liquorice bonbon cupcake cake.",
-    "Tiramisu tootsie roll cotton candy cheesecake topping. Cotton candy lollipop topping candy canes.",
-    "Marshmallow halvah danish."];
+const QuestionsToType = (props) => {
+    const index = props.index;
+    const value = props.value;
 
-const answers = ["Liquorice chocolate gummi bears cake sweet.",
-    "Jelly-o cupcake sweet roll ice cream brownie.",
-    "Topping jujubes cupcake gummi bears soufflé icing caramels chocolate bar gummi bears.",
-    "Powder halvah soufflé sugar plum powder.",
-    "Chocolate cake pudding cake halvah wafer bear claw dragée gummi bears.",
-    "Pastry soufflé cake cotton candy jelly-o topping pie candy lollipop."
-];
-
-
-function QuestionsToType(props) {
     return (
-        <div key={`question-${props.index}`}>
-            <label htmlFor={`question-${props.index}`}>Question text</label>
-            <input type="txt" id={`question-${props.index}`} value={props.item}/>
-            <button>Add</button>
+        <div key={`question-${index}`}>
+            <label htmlFor={`question-${index}`}>Question text</label>
+            <input
+                onChange={(event) => props.handleInputChange(index, event.target.value)}
+                type="text"
+                id={`question-${index}`}
+                value={value}
+                placeholder="Write your question here"
+            />
+            <button onClick={(event) => this.props.handleAddClick(index, event.target.value)}>Add</button>
         </div>
     )
 }
@@ -32,7 +25,7 @@ function AnswersToType(props) {
     return (
         <div key={`answer-${props.index}`}>
             <label htmlFor={`answer-${props.index}`}>Answer text</label>
-            <input type="txt" id={`answer-${props.index}`} value={props.item}/>
+            <input type="txt" id={`answer-${props.index}`} placeholder="Write your answers here"/>
             <button>Add</button>
         </div>
     )
@@ -49,35 +42,72 @@ function QuestionsToShow(props) {
 
 function AnswersToShow(props) {
     return (
-        <div key={`questionToShow-${props.index}`}>
+        <div key={`answersToShow-${props.index}`}>
             <div>{props.item}</div>
         </div>
     )
 }
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            questions: ['question 1', 'question 2'],
+            answers: []
+        }
+    }
 
-    handleClickQuestion = (event) => {
-        console.log("Male pieski");
+    handleClickQuestion = (text) => {
+        this.setState({
+            questions: this.state.questions.concat(text)
+        });
     };
+
+    handleClickAnswer = (event) => {
+        this.setState({
+            answers: this.state.answers.concat('Give your answer here')
+        });
+    };
+
+    handleInputChange = (index, newText) => {
+        this.setState({
+            questions: this.state.questions.map((currentText, i) => {
+                if (i === index) {
+                    return newText
+                } else {
+                    return currentText
+                }
+            })
+        })
+    }
+
+    handleAddClick = (event) => {
+        console.log(this.state.value);
+    }
 
     render() {
 
         return (
             <div>
+                Number of questions {this.state.questions.length}
                 <div className="write-section">
                     <div>
                         <button onClick={this.handleClickQuestion}>Add question</button>
-                        <button>Add answer</button>
+                        <button onClick={this.handleClickAnswer}>Add answer</button>
                     </div>
                     <div>
-                        <div>{questions.map((item, index) => <QuestionsToType index={index} item={item}/>)}</div>
-                        <div>{answers.map((item, index) => <AnswersToType index={index} item={item}/>)}</div>
+                        <div>{this.state.questions.map((value, index) => <QuestionsToType
+                            index={index}
+                            value={value}
+                            key={"asdef" + index}
+                            handleInputChange={this.handleInputChange}
+                        />)}</div>
+                        <div>{this.state.answers.map((item, index) => <AnswersToType index={index} item={item} key={"asdhf" + index}/>)}</div>
                     </div>
                 </div>
                 <div className="see-section">
-                    <div>{questions.map((item, index) => <QuestionsToShow index={index} item={item}/>)}</div>
-                    <div>{answers.map((item, index) => <AnswersToShow index={index} item={item}/>)}</div>
+                    <div>{this.state.questions.map((item, index) => <QuestionsToShow key={"adsdf" + index} index={index} item={item}/>)}</div>
+                    <div>{this.state.answers.map((item, index) => <AnswersToShow key={"asadf" + index} index={index} item={item}/>)}</div>
                 </div>
             </div>
         );
