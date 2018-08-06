@@ -1,36 +1,7 @@
 import React, {Component} from 'react';
+import {QuestionsToType} from './QuestionsToType';
+import {QuestionsToShow} from "./QuestionsToShow";
 import './App.css';
-
-
-const QuestionsToType = (props) => {
-    const index = props.index;
-    const value = props.value;
-
-    return (
-        <div key={`question-${index}`}>
-            <label htmlFor={`question-${index}`}>Question text</label>
-            <input
-                onChange={(event) => props.handleInputChange(index, event.target.value)}
-                type='text'
-                id={`question-${index}`}
-                value={value}
-                placeholder='Write your question here'
-            />
-            <button onClick={(event) => props.handleRemoveClick(index, event.target)}>Remove</button>
-        </div>
-    )
-};
-
-
-function QuestionsToShow(props) {
-    return (
-        <div key={`questionToShow-${props.index}`}>
-            <div>{props.item}</div>
-        </div>
-    )
-}
-
-
 
 class App extends Component {
     constructor(props) {
@@ -60,12 +31,13 @@ class App extends Component {
     };
 
     handleRemoveClick = (index) => {
-        if (this.state.questions.length > 1) {
-        this.setState({
-            questions: this.state.questions.filter((el, i) => {
-                return i !== index;
+        if (this.state.questions.indexOf('question 0') !== index) {
+            this.setState({
+                questions: this.state.questions.filter((el, i) => {
+                    return i !== index;
+                })
             })
-        })}
+        }
     };
 
     render() {
