@@ -11,15 +11,15 @@ const QuestionsToType = (props) => {
             <label htmlFor={`question-${index}`}>Question text</label>
             <input
                 onChange={(event) => props.handleInputChange(index, event.target.value)}
-                type="text"
+                type='text'
                 id={`question-${index}`}
                 value={value}
-                placeholder="Write your question here"
+                placeholder='Write your question here'
             />
             <button onClick={(event) => props.handleRemoveClick(index, event.target)}>Remove</button>
         </div>
     )
-}
+};
 
 
 function QuestionsToShow(props) {
@@ -40,9 +40,9 @@ class App extends Component {
         }
     }
 
-    handleClickQuestion = (text) => {
+    handleClickQuestion = () => {
         this.setState({
-            questions: this.state.questions.concat("question " + this.state.questions.length)
+            questions: this.state.questions.concat('question ' + this.state.questions.length)
         });
     };
 
@@ -57,23 +57,22 @@ class App extends Component {
                 }
             })
         })
-    }
+    };
 
     handleRemoveClick = (index) => {
         this.setState({
             questions: this.state.questions.filter((el, i) => {
-                const includeElement = (i !== index)
-                return includeElement
+                return i !== index;
             })
         })
-    }
+    };
 
     render() {
 
         return (
             <div>
                 Number of questions {this.state.questions.length}
-                <div className="write-section">
+                <div className='write-section'>
                     <div>
                         <button onClick={this.handleClickQuestion}>Add question</button>
                     </div>
@@ -81,7 +80,7 @@ class App extends Component {
                         <div>{this.state.questions.map((value, index) => <QuestionsToType
                             index={index}
                             value={value}
-                            key={"asdef" + index}
+                            key={'write-q' + index}
                             handleInputChange={this.handleInputChange}
                             handleRemoveClick={this.handleRemoveClick}
                         />)}</div>
@@ -89,7 +88,7 @@ class App extends Component {
                 </div>
                 <div className="see-section">
                     <div>{this.state.questions.map((item, index) => <QuestionsToShow
-                        key={"adsdf" + index}
+                        key={"see-q" + index}
                         index={index}
                         item={item}
                     />)}</div>
