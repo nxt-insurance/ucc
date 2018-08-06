@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Button from '../Button/Button.js';
 import QuestionsToType from '../QuestionsToType/QuestionsToType';
 import {QuestionsToShow} from "../QuestionsToShow/QuestionsToShow";
 import './App.css';
@@ -48,7 +49,7 @@ class App extends Component {
             <div>
                 <div className='write-section'>
                     <div>
-                        <button className='add-button' onClick={this.handleClickQuestion}>Add question</button>
+                        <Button onClick={this.handleClickQuestion} color="blue" text="Add question" />
                     </div>
                     <div>
                         <div>{this.state.questions.map((value, index) => <QuestionsToType

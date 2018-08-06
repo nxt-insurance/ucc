@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button.js';
 import './QuestionsToType.css';
 
 const QuestionsToType = (props) => {
@@ -6,7 +7,8 @@ const QuestionsToType = (props) => {
     const value = props.value;
 
     return (
-        <div className='question-to-type' key={`question-${index}`}>
+        <div className='question-to-type-container' key={`question-${index}`}>
+            <div className="question-to-type">
             <label htmlFor={`question-${index}`}>Question text</label><br />
             <input
                 onChange={(event) => props.handleInputChange(index, event.target.value)}
@@ -15,7 +17,10 @@ const QuestionsToType = (props) => {
                 value={value}
                 placeholder='Write your question here'
             />
-            {index !== 0 ? <button onClick={(event) => props.handleRemoveClick(index, event.target)}>Remove</button> : null }
+            </div>
+            <div className="remove-button">
+            {index !== 0 ? <Button onClick={(event) => props.handleRemoveClick(index, event.target)} color="white" text="Remove" /> : null }
+            </div>
         </div>
     )
 };
