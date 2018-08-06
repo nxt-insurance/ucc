@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+.write-section {
+  float: left;
+  padding: 1.5rem;
+  width: 50%;
+}
+
+.see-section {
+  float: right;
+  border-left: 1px solid grey;
+  height: 100vh;
+  padding: 1.5rem;
+  width: 50%;
+}
+
+.add-button {
+  color: blue;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border: 1px solid blue;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+

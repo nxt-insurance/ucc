@@ -1,5 +1,6 @@
 import React from 'react';
-import carla from "./carla.png";
+import carla from "../carla.png";
+import './QuestionsToShow.css';
 
 function QuestionsToShow(props) {
     return (

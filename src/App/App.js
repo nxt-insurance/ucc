@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {QuestionsToType} from './QuestionsToType';
-import {QuestionsToShow} from "./QuestionsToShow";
+import QuestionsToType from '../QuestionsToType/QuestionsToType';
+import {QuestionsToShow} from "../QuestionsToShow/QuestionsToShow";
 import './App.css';
+
+
 
 class App extends Component {
     constructor(props) {

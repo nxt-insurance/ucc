@@ -1,4 +1,5 @@
 import React from 'react';
+import './QuestionsToType.css';
 
 const QuestionsToType = (props) => {
     const index = props.index;
@@ -19,4 +20,4 @@ const QuestionsToType = (props) => {
     )
 };
 
-export {QuestionsToType};
+export default QuestionsToType;
