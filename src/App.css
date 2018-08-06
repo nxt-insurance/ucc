@@ -1,36 +1,85 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+* {
+  box-sizing: border-box;
 }
 
 .write-section {
   float: left;
+  padding: 1.5rem;
+  width: 50%;
 }
 
 .see-section {
   float: right;
+  border-left: 1px solid grey;
+  height: 100vh;
+  padding: 1.5rem;
+  width: 50%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.add-button {
+  color: blue;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  border: 1px solid blue;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.question-to-type {
+  margin-bottom: 1.5rem;
+}
+
+
+.question-to-type label {
+  font-size: 0.8rem;
+  color: dimgrey;
+  float: left;
+}
+
+.question-to-type input {
+  font-size: 1.2rem;
+  color: dimgrey;
+  border: none;
+  border-bottom: 1px solid blue;
+  min-width: 400px;
+  margin-bottom: 1rem;
+}
+
+
+.question-to-type button {
+  background-color: blue;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid blue;
+  border-radius: 5px;
+  margin-left: 2rem;
+  float: right;
+  margin-top: -1.1rem;
+}
+
+.question-to-show {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.avatar-to-show {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  margin: 1rem;
+ }
+
+.text-to-show {
+  color: dimgrey;
+  padding: 15px;
+  width: 50%;
+  background-color: #eeeeee;
+  border-radius: 20px 20px 20px 5px;
+  margin-bottom: 1.5rem;
 }

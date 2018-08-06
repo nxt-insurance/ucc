@@ -44,10 +44,9 @@ class App extends Component {
 
         return (
             <div>
-                Number of questions {this.state.questions.length}
                 <div className='write-section'>
                     <div>
-                        <button onClick={this.handleClickQuestion}>Add question</button>
+                        <button className='add-button' onClick={this.handleClickQuestion}>Add question</button>
                     </div>
                     <div>
                         <div>{this.state.questions.map((value, index) => <QuestionsToType

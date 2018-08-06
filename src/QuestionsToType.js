@@ -5,8 +5,8 @@ const QuestionsToType = (props) => {
     const value = props.value;
 
     return (
-        <div key={`question-${index}`}>
-            <label htmlFor={`question-${index}`}>Question text</label>
+        <div className='question-to-type' key={`question-${index}`}>
+            <label htmlFor={`question-${index}`}>Question text</label><br />
             <input
                 onChange={(event) => props.handleInputChange(index, event.target.value)}
                 type='text'
