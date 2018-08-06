@@ -36,7 +36,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions: []
+            questions: ['question 0']
         }
     }
 
@@ -60,11 +60,12 @@ class App extends Component {
     };
 
     handleRemoveClick = (index) => {
+        if (this.state.questions.length > 1) {
         this.setState({
             questions: this.state.questions.filter((el, i) => {
                 return i !== index;
             })
-        })
+        })}
     };
 
     render() {
