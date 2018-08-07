@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Button from '../Button/Button.js';
-import QuestionsToType from '../QuestionsToType/QuestionsToType';
-import {QuestionsToShow} from "../QuestionsToShow/QuestionsToShow";
-import './App.css';
+import Button from './components/Button.js';
+import QuestionsToType from './components/QuestionsToType';
+import {QuestionsToShow} from "./components/QuestionsToShow";
+import { StyleSheet, css } from 'aphrodite';
 
 
 
@@ -46,8 +46,8 @@ class App extends Component {
     render() {
 
         return (
-            <div>
-                <div className='write-section'>
+            <div className={css(styles.mainContainer)}>
+                <div className={css(styles.writeSection)}>
                     <div>
                         <Button onClick={this.handleClickQuestion} color="blue" text="Add question" />
                     </div>
@@ -61,7 +61,7 @@ class App extends Component {
                         />)}</div>
                     </div>
                 </div>
-                <div className="see-section">
+                <div className={css(styles.seeSection)}>
                     <div>{this.state.questions.map((item, index) => <QuestionsToShow
                         key={"see-q" + index}
                         index={index}
@@ -72,5 +72,28 @@ class App extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        boxSizing: 'border-box'
+    },
+
+    writeSection: {
+        float: 'left',
+        padding: '1.5rem',
+        width: '50%',
+        boxSizing: 'border-box'
+    },
+
+    seeSection: {
+        float: 'right',
+        borderLeft: '1px solid grey',
+        height: '100vh',
+        padding: '1.5rem',
+        width: '50%',
+        boxSizing: 'border-box'
+    },
+
+});
 
 export default App;
