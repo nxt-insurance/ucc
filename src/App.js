@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import Button from './components/Button.js';
 import QuestionsToType from './components/QuestionsToType';
 import {QuestionsToShow} from "./components/QuestionsToShow";
-import { StyleSheet, css } from 'aphrodite';
-
+import {StyleSheet, css} from 'aphrodite';
 
 
 class App extends Component {
@@ -13,7 +12,8 @@ class App extends Component {
             questions: [
                 {text: 'question 0', type: 'question'},
                 {text: 'answer 0', type: 'answer'}
-        ]}
+            ]
+        }
     }
 
     handleClickQuestion = () => {
@@ -33,9 +33,19 @@ class App extends Component {
         this.setState({
             questions: this.state.questions.map((currentText, i) => {
                 if (i === index) {
-                    return newText
+                    return (
+                        {
+                            text: newText,
+                            type: this.state.questions.type
+                        }
+                    )
                 } else {
-                    return currentText
+                    return (
+                        {
+                            text: currentText.text,
+                            type: this.state.questions.type
+                        }
+                    )
                 }
             })
         })
