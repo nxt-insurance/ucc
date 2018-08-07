@@ -1,28 +1,35 @@
 import React from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import {StyleSheet, css} from 'aphrodite';
 
 class Button extends React.Component {
 
-     render() {
-         const classes = [styles.mainButton];
+    render() {
+        const classes = [styles.mainButton];
 
-         if (this.props.color === 'blue') {
-             //className += ' main-button-blue'
-             classes.push(styles.mainButtonBlue)
-         } else if (this.props.color === 'white'){
-             classes.push(styles.mainButtonWhite)
-           //  className += ' main-button-white'
-         } else {
-             throw new Error (`Color ${this.props.color} is not supported`)
-         }
+        if (this.props.color === 'blue') {
+            classes.push(styles.mainButtonBlue)
+        } else if (this.props.color === 'white') {
+            classes.push(styles.mainButtonWhite)
+        } else {
+            throw new Error(`Color ${this.props.color} is not supported`)
+        }
+
+        if (this.props.size === 'long') {
+            classes.push(styles.mainButtonLong)
+        } else if (this.props.size === 'short') {
+            classes.push(styles.mainButtonShort)
+        } else {
+            throw new Error(`Color ${this.props.size} is not supported`)
+        };
+
 
         return (
             <div>
                 <button className={css(classes)} onClick={this.props.onClick}>{this.props.text}</button>
             </div>
         )
-      }
-    };
+    }
+};
 
 
 const styles = StyleSheet.create({
@@ -38,14 +45,23 @@ const styles = StyleSheet.create({
         marginBottom: '1.5rem'
     },
 
-    mainButtonBlue: {
-        color: 'blue'
-},
-
     mainButtonWhite: {
-    color: 'white',
-    backgroundColor: 'blue'
-}
+        backgroundColor: 'white',
+        color: 'blue'
+    },
+
+    mainButtonBlue: {
+        color: 'white',
+        backgroundColor: 'blue'
+    },
+
+    mainButtonLong: {
+        width: '15rem'
+    },
+
+    mainButtonShort: {
+        width: '10rem'
+    }
 
 });
 

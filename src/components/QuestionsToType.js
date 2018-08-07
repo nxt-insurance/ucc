@@ -5,6 +5,12 @@ import { StyleSheet, css } from 'aphrodite';
 const QuestionsToType = (props) => {
     const index = props.index;
     const value = props.value;
+    const type = props.type;
+    const inputStyle = [styles.questionToTypeInput];
+
+    if (type === 'answer') {
+        inputStyle.push(styles.answersToTypeInput);
+    }
 
     return (
         <div className={css(styles.questionToTypeContainer)} key={`question-${index}`}>
@@ -15,7 +21,7 @@ const QuestionsToType = (props) => {
                 Question text
             </label><br />
             <input
-                className={css(styles.questionToTypeInput)}
+                className={css(inputStyle)}
                 onChange={(event) => props.handleInputChange(index, event.target.value)}
                 type='text'
                 id={`question-${index}`}
@@ -24,7 +30,7 @@ const QuestionsToType = (props) => {
             />
             </div>
             <div>
-            {index !== 0 ? <Button onClick={(event) => props.handleRemoveClick(index, event.target)} color="white" text="Remove" /> : null }
+            {index !== 0 ? <Button onClick={(event) => props.handleRemoveClick(index, event.target)} color="blue" size="short" text="Remove" /> : null }
             </div>
         </div>
     )
@@ -53,8 +59,11 @@ const styles = StyleSheet.create({
         minWidth: '400px',
         marginBottom: '1rem',
         marginRight: '2rem'
-    }
+    },
 
+    answersToTypeInput: {
+        borderBottom: '1px solid deeppink'
+    }
 });
 
 export default QuestionsToType;

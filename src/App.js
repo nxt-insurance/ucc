@@ -10,13 +10,21 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questions: ['question 0']
-        }
+            questions: [
+                {text: 'question 0', type: 'question'},
+                {text: 'answer 0', type: 'answer'}
+        ]}
     }
 
     handleClickQuestion = () => {
         this.setState({
-            questions: this.state.questions.concat('question ' + this.state.questions.length)
+            questions: this.state.questions.concat({text: 'question', type: 'question'})
+        });
+    };
+
+    handleClickAnswer = () => {
+        this.setState({
+            questions: this.state.questions.concat({text: 'answer', type: 'answer'})
         });
     };
 
@@ -48,13 +56,15 @@ class App extends Component {
         return (
             <div className={css(styles.mainContainer)}>
                 <div className={css(styles.writeSection)}>
-                    <div>
-                        <Button onClick={this.handleClickQuestion} color="blue" text="Add question" />
+                    <div className={css(styles.buttonContainer)}>
+                        <Button onClick={this.handleClickQuestion} color="white" text="Add question" size="long"/>
+                        <Button onClick={this.handleClickAnswer} color="blue" text="See answer" size="long"/>
                     </div>
                     <div>
                         <div>{this.state.questions.map((value, index) => <QuestionsToType
                             index={index}
-                            value={value}
+                            value={value.text}
+                            type={value.type}
                             key={'write-q' + index}
                             handleInputChange={this.handleInputChange}
                             handleRemoveClick={this.handleRemoveClick}
@@ -65,7 +75,7 @@ class App extends Component {
                     <div>{this.state.questions.map((item, index) => <QuestionsToShow
                         key={"see-q" + index}
                         index={index}
-                        item={item}
+                        item={item.text}
                     />)}</div>
                 </div>
             </div>
@@ -83,6 +93,11 @@ const styles = StyleSheet.create({
         padding: '1.5rem',
         width: '50%',
         boxSizing: 'border-box'
+    },
+
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-between'
     },
 
     seeSection: {
