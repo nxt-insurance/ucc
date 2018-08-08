@@ -4,20 +4,20 @@ import {StyleSheet, css} from 'aphrodite';
 class Button extends React.Component {
 
     render() {
-        const classes = [styles.mainButton];
+        let buttonStyles = [styles.mainButton];
 
         if (this.props.color === 'blue') {
-            classes.push(styles.mainButtonBlue)
+            buttonStyles.push(styles.mainButtonBlue)
         } else if (this.props.color === 'white') {
-            classes.push(styles.mainButtonWhite)
+            buttonStyles.push(styles.mainButtonWhite)
         } else {
             throw new Error(`Color ${this.props.color} is not supported`)
         }
 
         if (this.props.size === 'long') {
-            classes.push(styles.mainButtonLong)
+            buttonStyles.push(styles.mainButtonLong)
         } else if (this.props.size === 'short') {
-            classes.push(styles.mainButtonShort)
+            buttonStyles.push(styles.mainButtonShort)
         } else {
             throw new Error(`Color ${this.props.size} is not supported`)
         };
@@ -25,7 +25,7 @@ class Button extends React.Component {
 
         return (
             <div>
-                <button className={css(classes)} onClick={this.props.onClick}>{this.props.text}</button>
+                <button className={css(buttonStyles)} onClick={this.props.onClick}>{this.props.text}</button>
             </div>
         )
     }

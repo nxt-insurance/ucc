@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from './components/Button.js';
-import QuestionsToType from './components/QuestionsToType';
-import {QuestionsToShow} from "./components/QuestionsToShow";
+import MessagesToType from './components/MessagesToType';
+import {MessagesToShow} from "./components/MessagesToShow";
 import {StyleSheet, css} from 'aphrodite';
 
 
@@ -31,21 +31,17 @@ class App extends Component {
 
     handleInputChange = (index, newText) => {
         this.setState({
-            questions: this.state.questions.map((currentText, i) => {
+            questions: this.state.questions.map((currentMessage, i) => {
                 if (i === index) {
-                    return (
-                        {
-                            text: newText,
-                            type: this.state.questions.type
-                        }
-                    )
+                    console.log(this.state.questions);
+                    return {
+                        text: newText,
+                        type: currentMessage.type
+                    }
+
                 } else {
-                    return (
-                        {
-                            text: currentText.text,
-                            type: this.state.questions.type
-                        }
-                    )
+                    console.log(this.state.questions);
+                    return currentMessage
                 }
             })
         })
@@ -71,7 +67,7 @@ class App extends Component {
                         <Button onClick={this.handleClickAnswer} color="blue" text="See answer" size="long"/>
                     </div>
                     <div>
-                        <div>{this.state.questions.map((value, index) => <QuestionsToType
+                        <div>{this.state.questions.map((value, index) => <MessagesToType
                             index={index}
                             value={value.text}
                             type={value.type}
@@ -82,10 +78,11 @@ class App extends Component {
                     </div>
                 </div>
                 <div className={css(styles.seeSection)}>
-                    <div>{this.state.questions.map((item, index) => <QuestionsToShow
+                    <div>{this.state.questions.map((item, index) => <MessagesToShow
                         key={"see-q" + index}
                         index={index}
                         item={item.text}
+                        type={item.type}
                     />)}</div>
                 </div>
             </div>
@@ -102,7 +99,9 @@ const styles = StyleSheet.create({
         float: 'left',
         padding: '1.5rem',
         width: '50%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        borderRight: '1px solid grey',
+        minHeight: '100vh'
     },
 
     buttonContainer: {
@@ -112,11 +111,10 @@ const styles = StyleSheet.create({
 
     seeSection: {
         float: 'right',
-        borderLeft: '1px solid grey',
         height: '100vh',
         padding: '1.5rem',
         width: '50%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
     },
 
 });

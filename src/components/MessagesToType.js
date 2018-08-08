@@ -2,23 +2,24 @@ import React from 'react';
 import Button from './Button.js';
 import { StyleSheet, css } from 'aphrodite';
 
-const QuestionsToType = (props) => {
+const MessagesToType = (props) => {
     const index = props.index;
     const value = props.value;
     const type = props.type;
-    const inputStyle = [styles.questionToTypeInput];
+
+    let inputStyle = [styles.messageInput];
 
     if (type === 'answer') {
-        inputStyle.push(styles.answersToTypeInput);
+        inputStyle.push(styles.answer);
     }
 
     return (
-        <div className={css(styles.questionToTypeContainer)} key={`question-${index}`}>
-            <div className={css(styles.questionToType)}>
+        <div className={css(styles.messageContainer)} key={`question-${index}`}>
+            <div className={css(styles.message)}>
             <label
-                className={css(styles.questionToTypeLabel)}
+                className={css(styles.messageLabel)}
                 htmlFor={`question-${index}`}>
-                Question text
+                {type === 'question' ? "Question text" : "Answer text"}
             </label><br />
             <input
                 className={css(inputStyle)}
@@ -37,20 +38,20 @@ const QuestionsToType = (props) => {
 };
 
 const styles = StyleSheet.create({
-    questionToTypeContainer: {
+    messageContainer: {
         display: 'flex'
     },
 
-    questionToType: {
+    message: {
         marginBottom: '2rem'
     },
 
-    questionToTypeLabel: {
+    messageLabel: {
         fontSize: '0.8rem',
         color: 'dimgrey'
     },
 
-    questionToTypeInput: {
+    messageInput: {
         fontSize: '1.2rem',
         color: 'dimgrey',
         borderTop: 'none',
@@ -61,9 +62,9 @@ const styles = StyleSheet.create({
         marginRight: '2rem'
     },
 
-    answersToTypeInput: {
-        borderBottom: '1px solid deeppink'
+    answer: {
+        borderBottom: '1px solid #3df2c0'
     }
 });
 
-export default QuestionsToType;
+export default MessagesToType;
