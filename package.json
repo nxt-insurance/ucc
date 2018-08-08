@@ -12,6 +12,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier-all": "prettier --write src/**/*.js src/*.js"
+  },
+  "devDependencies": {
+    "prettier": "1.14.0"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "trailingComma": "es5",
+    "singleQuote": true
   }
 }

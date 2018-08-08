@@ -1,67 +1,65 @@
-import React from 'react';
-import carla from "../carla.png";
-import { StyleSheet, css } from 'aphrodite';
+import React from 'react'
+import carla from '../carla.png'
+import { StyleSheet, css } from 'aphrodite'
 
 function MessagesToShow(props) {
-    const type = props.type;
+  const type = props.type
 
-    let messageContainer = [styles.messageContainer];
-    let avatar = [styles.avatar]
-    let message = [styles.message];
+  let messageContainer = [styles.messageContainer]
+  let avatar = [styles.avatar]
+  let message = [styles.message]
 
+  if (type === 'answer') {
+    messageContainer.push(styles.answerPosition)
+    avatar.push(styles.avatarHidden)
+    message.push(styles.answer)
+  }
 
-
-    if (type === 'answer') {
-        messageContainer.push(styles.answerPosition);
-        avatar.push(styles.avatarHidden);
-        message.push(styles.answer);
-    }
-
-    return (
-        <div className={css(messageContainer)} key={`questionToShow-${props.index}`}>
-            <img className={css(avatar)} src={carla} alt='Avatar of Carla'/>
-            <div className={css(message)} >{props.item}</div>
-        </div>
-    )
+  return (
+    <div className={css(messageContainer)} key={`questionToShow-${props.index}`}>
+      <img className={css(avatar)} src={carla} alt="Avatar of Carla" />
+      <div className={css(message)}>{props.item}</div>
+    </div>
+  )
 }
 
 const styles = StyleSheet.create({
-    messageContainer: {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-end'
-    },
+  messageContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
 
-    answerPosition: {
-        justifyContent: 'flex-end'
-    },
+  answerPosition: {
+    justifyContent: 'flex-end',
+  },
 
-    avatar: {
-        height: '3.5rem',
-        width: '3.5rem',
-        borderRadius: '50%',
-        margin: '1rem'
-    },
+  avatar: {
+    height: '3.5rem',
+    width: '3.5rem',
+    borderRadius: '50%',
+    margin: '1rem',
+  },
 
-    avatarHidden: {
-        display: 'none'
-    },
+  avatarHidden: {
+    display: 'none',
+  },
 
-    message: {
-        color: 'dimgrey',
-        padding: '15px',
-        width: '50%',
-        backgroundColor: '#eeeeee',
-        borderRadius: '20px 20px 20px 5px',
-        marginBottom: '1.5rem',
-        overflow: 'hidden'
-    },
+  message: {
+    color: 'dimgrey',
+    padding: '15px',
+    width: '50%',
+    backgroundColor: '#eeeeee',
+    borderRadius: '20px 20px 20px 5px',
+    marginBottom: '1.5rem',
+    overflow: 'hidden',
+  },
 
-    answer: {
-        color: 'white',
-        backgroundColor: 'blue',
-        borderRadius: '20px 20px 5px 20px'
-    }
-});
+  answer: {
+    color: 'white',
+    backgroundColor: 'blue',
+    borderRadius: '20px 20px 5px 20px',
+  },
+})
 
-export {MessagesToShow};
+export { MessagesToShow }
