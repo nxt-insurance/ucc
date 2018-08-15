@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button.js'
-import { StyleSheet, css } from 'aphrodite'
+import { StyleSheet, css } from 'aphrodite/no-important'
 
 const MessagesToType = props => {
   const index = props.index
@@ -22,7 +22,7 @@ const MessagesToType = props => {
         <br />
         <input
           className={css(inputStyle)}
-          onChange={event => props.handleInputChange(index, event.target.value)}
+          onChange={event => props.handleChangeMessage(index, event.target.value)}
           type="text"
           id={`question-${index}`}
           value={value}
@@ -32,7 +32,7 @@ const MessagesToType = props => {
       <div>
         {index !== 0 && (
           <Button
-            onClick={event => props.handleRemoveClick(index, event.target)}
+            onClick={event => props.handleRemoveMessage(index, event.target)}
             color="blue"
             size="short"
             text="Remove"
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     borderTop: 'none',
     borderRight: 'none',
     borderBottom: '1px solid blue',
+    borderLeft: 'none',
     minWidth: '400px',
     marginBottom: '1rem',
     marginRight: '2rem',

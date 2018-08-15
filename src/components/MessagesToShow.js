@@ -1,6 +1,6 @@
 import React from 'react'
 import carla from '../carla.png'
-import { StyleSheet, css } from 'aphrodite'
+import { StyleSheet, css } from 'aphrodite/no-important'
 
 function MessagesToShow(props) {
   const type = props.type
