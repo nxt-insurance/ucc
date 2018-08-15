@@ -51,8 +51,7 @@ const styles = StyleSheet.create({
     width: '50%',
     backgroundColor: '#eeeeee',
     borderRadius: '20px 20px 20px 5px',
-    marginBottom: '1.5rem',
-    overflow: 'hidden',
+    marginBottom: '1.5rem'
   },
 
   answer: {
