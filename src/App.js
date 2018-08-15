@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import store from './store'
 import Button from './components/Button.js'
 import MessagesToType from './components/MessagesToType'
 import { MessagesToShow } from './components/MessagesToShow'
@@ -59,45 +61,47 @@ class App extends Component {
 
   render() {
     return (
-      <div className={css(styles.mainContainer)}>
-        <div className={css(styles.writeSection)}>
-          <div className={css(styles.buttonContainer)}>
-            <Button
-              onClick={this.handleClickQuestion}
-              color="white"
-              text="Add question"
-              size="long"
-            />
-            <Button onClick={this.handleClickAnswer} color="blue" text="See answer" size="long" />
-          </div>
-          <div>
+      <Provider store={store}>
+        <div className={css(styles.mainContainer)}>
+          <div className={css(styles.writeSection)}>
+            <div className={css(styles.buttonContainer)}>
+              <Button
+                onClick={this.handleClickQuestion}
+                color="white"
+                text="Add question"
+                size="long"
+              />
+              <Button onClick={this.handleClickAnswer} color="blue" text="See answer" size="long" />
+            </div>
             <div>
-              {this.state.questions.map((value, index) => (
-                <MessagesToType
+              <div>
+                {this.state.questions.map((value, index) => (
+                  <MessagesToType
+                    index={index}
+                    value={value.text}
+                    type={value.type}
+                    key={'write-q' + index}
+                    handleInputChange={this.handleInputChange}
+                    handleRemoveClick={this.handleRemoveClick}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={css(styles.seeSection)}>
+            <div>
+              {this.state.questions.map((item, index) => (
+                <MessagesToShow
+                  key={'see-q' + index}
                   index={index}
-                  value={value.text}
-                  type={value.type}
-                  key={'write-q' + index}
-                  handleInputChange={this.handleInputChange}
-                  handleRemoveClick={this.handleRemoveClick}
+                  item={item.text}
+                  type={item.type}
                 />
               ))}
             </div>
           </div>
         </div>
-        <div className={css(styles.seeSection)}>
-          <div>
-            {this.state.questions.map((item, index) => (
-              <MessagesToShow
-                key={'see-q' + index}
-                index={index}
-                item={item.text}
-                type={item.type}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      </Provider>
     )
   }
 }
