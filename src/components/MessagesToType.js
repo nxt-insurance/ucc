@@ -30,14 +30,14 @@ const MessagesToType = props => {
         />
       </div>
       <div>
-        {index !== 0 ? (
+        {index !== 0 && (
           <Button
             onClick={event => props.handleRemoveClick(index, event.target)}
             color="blue"
             size="short"
             text="Remove"
           />
-        ) : null}
+        )}
       </div>
     </div>
   )
