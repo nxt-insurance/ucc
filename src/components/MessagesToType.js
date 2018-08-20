@@ -8,13 +8,15 @@ const MessagesToType = props => {
   const type = props.type
 
   let inputStyle = [styles.messageInput]
+  let messageContainer = [styles.messageContainer]
 
   if (type === 'answer') {
     inputStyle.push(styles.answer)
+    messageContainer.push(styles.answerPosition)
   }
 
   return (
-    <div className={css(styles.messageContainer)} key={`question-${index}`}>
+    <div className={css(messageContainer)} key={`question-${index}`}>
       <div className={css(styles.message)}>
         <label className={css(styles.messageLabel)} htmlFor={`question-${index}`}>
           {type === 'question' ? 'Question text' : 'Answer text'}
@@ -46,6 +48,10 @@ const MessagesToType = props => {
 const styles = StyleSheet.create({
   messageContainer: {
     display: 'flex',
+  },
+
+  answerPosition: {
+    justifyContent: 'flex-end',
   },
 
   message: {
