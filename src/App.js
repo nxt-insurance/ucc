@@ -7,14 +7,6 @@ import { MessagesToShow } from './components/MessagesToShow'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
 class App extends Component {
-  //
-  // handleChangeMessage = (index, newText) => {
-  // this.props.changeMessage(index, newText)
-  // };
-  //
-  // handleRemoveMessage = index => {
-  // this.props.removeMessage(index);
-  // };
 
   render() {
     return (

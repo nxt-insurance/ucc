@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "aphrodite": "^2.2.2",
+    "express": "^4.16.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -25,5 +26,6 @@
     "semi": false,
     "trailingComma": "es5",
     "singleQuote": true
-  }
+  },
+  "proxy": "http://localhost:1200"
 }
