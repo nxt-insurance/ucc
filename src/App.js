@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addAnswer, addQuestion, changeMessage, removeMessage } from './actionCreators'
+import {
+  addAnswer,
+  addQuestion,
+  changeMessage,
+  removeMessage,
+  incrementCounter,
+  decrementCounter,
+} from './actionCreators'
 import Button from './components/Button.js'
 import MessagesToType from './components/MessagesToType'
 import { MessagesToShow } from './components/MessagesToShow'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
 class App extends Component {
-
   render() {
     return (
       <div className={css(styles.mainContainer)}>
@@ -21,6 +27,21 @@ class App extends Component {
             />
             <Button onClick={this.props.addAnswer} color="blue" text="See answer" size="long" />
           </div>
+          <div className={css(styles.buttonContainer)}>
+            <Button
+              onClick={this.props.incrementCounter}
+              color="white"
+              text="Counter +"
+              size="long"
+            />
+            <Button
+              onClick={this.props.decrementCounter}
+              color="blue"
+              text="Counter -"
+              size="long"
+            />
+          </div>
+          <div className={css(styles.counter)}>Start counting: {this.props.counter}</div>
           <div>
             <div>
               {this.props.messages.map((value, index) => (
@@ -38,12 +59,14 @@ class App extends Component {
         </div>
         <div className={css(styles.seeSection)}>
           <div>
-            {this.props.messages.map((item, index) => (
+            {this.props.messages.map((item, index, array) => (
               <MessagesToShow
                 key={'see-q' + index}
                 index={index}
                 item={item.text}
                 type={item.type}
+                hasCounter={index === array.length - 1}
+                counter={this.props.counter}
               />
             ))}
           </div>
@@ -79,10 +102,17 @@ const styles = StyleSheet.create({
     width: '50%',
     boxSizing: 'border-box',
   },
+  counter: {
+    padding: '2rem',
+    backgroundColor: 'yellow',
+    fontWeight: 'bold',
+    marginBottom: '2rem',
+  },
 })
 
 const mapStateToProps = state => ({
-  messages: state,
+  messages: state.chat,
+  counter: state.counter,
 })
 
 const mapDispatchToProps = {
@@ -90,6 +120,11 @@ const mapDispatchToProps = {
   addAnswer,
   changeMessage,
   removeMessage,
+  incrementCounter,
+  decrementCounter,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

@@ -18,7 +18,10 @@ function MessagesToShow(props) {
   return (
     <div className={css(messageContainer)} key={`questionToShow-${props.index}`}>
       <img className={css(avatar)} src={carla} alt="Avatar of Carla" />
-      <div className={css(message)}>{props.item}</div>
+      <div className={css(message)}>
+        {props.item}&nbsp;
+        {props.hasCounter && <span>The current counter is {props.counter}</span>}
+      </div>
     </div>
   )
 }
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     width: '50%',
     backgroundColor: '#eeeeee',
     borderRadius: '20px 20px 20px 5px',
-    marginBottom: '1.5rem'
+    marginBottom: '1.5rem',
   },
 
   answer: {
