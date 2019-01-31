@@ -9,32 +9,30 @@ const initialState = {
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_QUESTION:
-      const ChatWithNewQuestion = [
-        ...state.chat,
-        {
-          text: 'question',
-          type: 'question',
-        },
-      ]
       return {
-        chat: ChatWithNewQuestion,
-        counter: state.counter,
+        ...state,
+        chat: [
+          ...state.chat,
+          {
+            text: 'question',
+            type: 'question',
+          },
+        ],
       }
 
     // case actionTypes.LOAD_QUESTIONS:
     //   return action.data
 
     case actionTypes.ADD_ANSWER:
-      const chatWithNewAnswer = [
-        ...state.chat,
-        {
-          text: 'answer',
-          type: 'answer',
-        },
-      ]
       return {
-        chat: chatWithNewAnswer,
-        counter: state.counter,
+        ...state,
+        chat: [
+          ...state.chat,
+          {
+            text: 'answer',
+            type: 'answer',
+          },
+        ],
       }
 
     case actionTypes.CHANGE_MESSAGE:
@@ -50,28 +48,28 @@ const chatReducer = (state = initialState, action) => {
       })
 
       return {
+        ...state,
         chat: chatWithChangedMessage,
-        counter: state.counter,
       }
 
-    case actionTypes.REMOVE_MESSAGE:
+      case actionTypes.REMOVE_MESSAGE:
       const chatWithRemovedMessage = state.chat.filter((el, i) => {
         return i !== action.data.index
       })
       return {
+        ...state,
         chat: chatWithRemovedMessage,
-        counter: state.counter,
       }
 
     case actionTypes.INCREMENT_COUNTER:
       return {
-        chat: state.chat,
+        ...state,
         counter: ++state.counter,
       }
 
     case actionTypes.DECREMENT_COUNTER:
       return {
-        chat: state.chat,
+        ...state,
         counter: state.counter <= 0 ? 0 : --state.counter,
       }
 
