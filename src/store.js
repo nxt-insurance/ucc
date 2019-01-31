@@ -6,52 +6,6 @@ const initialState = {
   counter: 0,
 }
 
-const appReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.ADD_QUESTION:
-      return {
-        ...state,
-        chat: chatReducer(state.chat, action),
-      }
-
-    // case actionTypes.LOAD_QUESTIONS:
-    //   return action.data
-
-    case actionTypes.ADD_ANSWER:
-      return {
-        ...state,
-        chat: chatReducer(state.chat, action),
-      }
-
-    case actionTypes.CHANGE_MESSAGE:
-      return {
-        ...state,
-        chat: chatReducer(state.chat, action),
-      }
-
-    case actionTypes.REMOVE_MESSAGE:
-      return {
-        ...state,
-        chat: chatReducer(state.chat, action),
-      }
-
-    case actionTypes.INCREMENT_COUNTER:
-      return {
-        ...state,
-        counter: ++state.counter,
-      }
-
-    case actionTypes.DECREMENT_COUNTER:
-      return {
-        ...state,
-        counter: state.counter <= 0 ? 0 : --state.counter,
-      }
-
-    default:
-      return state
-  }
-}
-
 const chatReducer = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_QUESTION:
@@ -90,6 +44,26 @@ const chatReducer = (state = [], action) => {
 
     default:
       return state
+  }
+}
+
+const counterReducer = (state, action) => {
+  switch (action.type) {
+    case actionTypes.INCREMENT_COUNTER:
+      return ++state
+
+    case actionTypes.DECREMENT_COUNTER:
+      return state <= 0 ? 0 : --state
+
+    default:
+      return state
+  }
+}
+
+const appReducer = (state = initialState, action) => {
+  return {
+    chat: chatReducer(state.chat, action),
+    counter: counterReducer(state.counter, action),
   }
 }
 
