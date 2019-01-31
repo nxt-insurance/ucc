@@ -6,18 +6,12 @@ const initialState = {
   counter: 0,
 }
 
-const chatReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_QUESTION:
       return {
         ...state,
-        chat: [
-          ...state.chat,
-          {
-            text: 'question',
-            type: 'question',
-          },
-        ],
+        chat: chatReducer(state.chat, action),
       }
 
     // case actionTypes.LOAD_QUESTIONS:
@@ -26,39 +20,19 @@ const chatReducer = (state = initialState, action) => {
     case actionTypes.ADD_ANSWER:
       return {
         ...state,
-        chat: [
-          ...state.chat,
-          {
-            text: 'answer',
-            type: 'answer',
-          },
-        ],
+        chat: chatReducer(state.chat, action),
       }
 
     case actionTypes.CHANGE_MESSAGE:
-      const chatWithChangedMessage = state.chat.map((currentMessage, i) => {
-        if (i === action.data.index) {
-          return {
-            text: action.data.newText,
-            type: currentMessage.type,
-          }
-        } else {
-          return currentMessage
-        }
-      })
-
       return {
         ...state,
-        chat: chatWithChangedMessage,
+        chat: chatReducer(state.chat, action),
       }
 
-      case actionTypes.REMOVE_MESSAGE:
-      const chatWithRemovedMessage = state.chat.filter((el, i) => {
-        return i !== action.data.index
-      })
+    case actionTypes.REMOVE_MESSAGE:
       return {
         ...state,
-        chat: chatWithRemovedMessage,
+        chat: chatReducer(state.chat, action),
       }
 
     case actionTypes.INCREMENT_COUNTER:
@@ -78,8 +52,49 @@ const chatReducer = (state = initialState, action) => {
   }
 }
 
+const chatReducer = (state = [], action) => {
+  switch (action.type) {
+    case actionTypes.ADD_QUESTION:
+      return [
+        ...state,
+        {
+          text: 'question',
+          type: 'question',
+        },
+      ]
+
+    case actionTypes.ADD_ANSWER:
+      return [
+        ...state,
+        {
+          text: 'answer',
+          type: 'answer',
+        },
+      ]
+    case actionTypes.CHANGE_MESSAGE:
+      return state.map((currentMessage, i) => {
+        if (i === action.data.index) {
+          return {
+            text: action.data.newText,
+            type: currentMessage.type,
+          }
+        } else {
+          return currentMessage
+        }
+      })
+
+    case actionTypes.REMOVE_MESSAGE:
+      return state.filter((el, i) => {
+        return i !== action.data.index
+      })
+
+    default:
+      return state
+  }
+}
+
 const store = createStore(
-  chatReducer,
+  appReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
