@@ -1,12 +1,12 @@
 import { createStore } from 'redux'
+import { combineReducers } from 'redux'
+
 import * as actionTypes from './actionTypes'
 
-const initialState = {
-  chat: [{ text: 'question 0', type: 'question' }, { text: 'answer 0', type: 'answer' }],
-  counter: 0,
-}
-
-const chatReducer = (state = [], action) => {
+const chatReducer = (
+  state = [{ text: 'question 0', type: 'question' }, { text: 'answer 0', type: 'answer' }],
+  action
+) => {
   switch (action.type) {
     case actionTypes.ADD_QUESTION:
       return [
@@ -47,7 +47,7 @@ const chatReducer = (state = [], action) => {
   }
 }
 
-const counterReducer = (state, action) => {
+const counterReducer = (state = 0, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT_COUNTER:
       return ++state
@@ -60,12 +60,17 @@ const counterReducer = (state, action) => {
   }
 }
 
-const appReducer = (state = initialState, action) => {
-  return {
-    chat: chatReducer(state.chat, action),
-    counter: counterReducer(state.counter, action),
-  }
-}
+// const appReducer = (state = {}, action) => {
+//   return {
+//     chat: chatReducer(state.chat, action),
+//     counter: counterReducer(state.counter, action),
+//   }
+// }
+
+const appReducer = combineReducers({
+  chat: chatReducer,
+  counter: counterReducer,
+})
 
 const store = createStore(
   appReducer,
