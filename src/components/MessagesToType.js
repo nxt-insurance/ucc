@@ -14,7 +14,6 @@ const MessagesToType = props => {
     inputStyle.push(styles.answer)
     messageContainer.push(styles.answerPosition)
   }
-console.log(props);
   return (
     <div className={css(messageContainer)} key={`question-${index}`}>
       <div className={css(styles.message)}>
