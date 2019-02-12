@@ -14,7 +14,7 @@ const MessagesToType = props => {
     inputStyle.push(styles.answer)
     messageContainer.push(styles.answerPosition)
   }
-
+console.log(props);
   return (
     <div className={css(messageContainer)} key={`question-${index}`}>
       <div className={css(styles.message)}>
@@ -31,8 +31,8 @@ const MessagesToType = props => {
           placeholder="Write your question here"
         />
       </div>
-      <button onClick={props.incrementCounter}>+</button>
-      <button onClick={props.decrementCounter}>-</button>
+      <button onClick={props.handleIncrementLocalCounter}>+</button>
+      <button onClick={props.handleDecrementLocalCounter}>-</button>
       <div>
         {index !== 0 && (
           <Button
