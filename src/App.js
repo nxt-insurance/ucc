@@ -46,19 +46,21 @@ class App extends Component {
           <div className={css(styles.counter)}>Start counting: {this.props.counter}</div>
           <div>
             <div>
-              {this.props.messages.map((value, index) => (
-                <MessagesToType
-                  index={index}
-                  value={value.text}
-                  type={value.type}
-                  key={'write-q' + index}
-                  handleChangeMessage={this.props.changeMessage}
-                  handleRemoveMessage={this.props.removeMessage}
-                  handleIncrementLocalCounter={this.props.incrementLocalCounter}
-                  handleDecrementLocalCounter={this.props.decrementLocalCounter}
-                  localCounter={this.props.localCounter}
-                />
-              ))}
+              {this.props.messages.map((value, index) => {
+                return (
+                  <MessagesToType
+                    index={index}
+                    value={value.text}
+                    type={value.type}
+                    key={'write-q' + index}
+                    handleChangeMessage={this.props.changeMessage}
+                    handleRemoveMessage={this.props.removeMessage}
+                    handleIncrementLocalCounter={this.props.incrementLocalCounter}
+                    handleDecrementLocalCounter={this.props.decrementLocalCounter}
+                    localCounter={value.localCounter}
+                  />
+                )
+              })}
             </div>
           </div>
         </div>
@@ -117,7 +119,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   messages: state.chat,
   counter: state.counter,
-  localCounter: state.chat.localCounter,
 })
 
 const mapDispatchToProps = {

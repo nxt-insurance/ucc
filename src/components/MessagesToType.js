@@ -6,6 +6,7 @@ const MessagesToType = props => {
   const index = props.index
   const value = props.value
   const type = props.type
+  const localCounter = props.localCounter
 
   let inputStyle = [styles.messageInput]
   let messageContainer = [styles.messageContainer]
@@ -26,12 +27,12 @@ const MessagesToType = props => {
           onChange={event => props.handleChangeMessage(index, event.target.value)}
           type="text"
           id={`question-${index}`}
-          value={value}
+          value={`${value} Local number: ${localCounter}`}
           placeholder="Write your question here"
         />
       </div>
-      <button onClick={props.handleIncrementLocalCounter}>+</button>
-      <button onClick={props.handleDecrementLocalCounter}>-</button>
+      <button onClick={event => props.handleIncrementLocalCounter(index, event.target)}>+</button>
+      <button onClick={event => props.handleDecrementLocalCounter(index, event.target)}>-</button>
       <div>
         {index !== 0 && (
           <Button
