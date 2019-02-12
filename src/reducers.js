@@ -35,6 +35,7 @@ export const chatReducer = (
           return {
             text: action.data.newText,
             type: currentMessage.type,
+            localCounter: currentMessage.localCounter,
           }
         } else {
           return currentMessage
@@ -42,17 +43,17 @@ export const chatReducer = (
       })
 
     case actionTypes.INCREMENT_LOCAL_COUNTER:
-        return state.map((currentMessage, i) => {
-          if (i === action.data.index) {
-            return {
-                text: currentMessage.text,
-                type: currentMessage.type,
-                localCounter: ++currentMessage.localCounter,
-            }
-          } else {
-            return currentMessage
+      return state.map((currentMessage, i) => {
+        if (i === action.data.index) {
+          return {
+            text: currentMessage.text,
+            type: currentMessage.type,
+            localCounter: ++currentMessage.localCounter,
           }
-        })
+        } else {
+          return currentMessage
+        }
+      })
 
     case actionTypes.DECREMENT_LOCAL_COUNTER:
       return state.map((currentMessage, i) => {
@@ -60,7 +61,7 @@ export const chatReducer = (
           return {
             text: currentMessage.text,
             type: currentMessage.type,
-              localCounter: --currentMessage.localCounter,
+            localCounter: --currentMessage.localCounter,
           }
         } else {
           return currentMessage
