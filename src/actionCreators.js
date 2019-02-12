@@ -49,3 +49,21 @@ export const decrementCounter = () => {
     type: actionTypes.DECREMENT_COUNTER,
   }
 }
+
+export const incrementLocalCounter = index => {
+  return {
+    type: actionTypes.INCREMENT_LOCAL_COUNTER,
+    data: {
+      index,
+    },
+  }
+}
+
+export const decrementLocalCounter = index => {
+  return {
+    type: actionTypes.DECREMENT_LOCAL_COUNTER,
+    data: {
+      index,
+    },
+  }
+}

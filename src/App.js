@@ -5,6 +5,8 @@ import {
   addQuestion,
   changeMessage,
   removeMessage,
+  incrementLocalCounter,
+  decrementLocalCounter,
   incrementCounter,
   decrementCounter,
 } from './actionCreators'
@@ -52,6 +54,9 @@ class App extends Component {
                   key={'write-q' + index}
                   handleChangeMessage={this.props.changeMessage}
                   handleRemoveMessage={this.props.removeMessage}
+                  handleIncrementLocalCounter={this.props.incrementLocalCounter}
+                  handleDecrementLocalCounter={this.props.decrementLocalCounter}
+                  localCounter={this.props.localCounter}
                 />
               ))}
             </div>
@@ -65,7 +70,6 @@ class App extends Component {
                 index={index}
                 item={item.text}
                 type={item.type}
-                hasCounter={index === array.length - 1}
                 counter={this.props.counter}
               />
             ))}
@@ -113,6 +117,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   messages: state.chat,
   counter: state.counter,
+  localCounter: state.chat.localCounter,
 })
 
 const mapDispatchToProps = {
@@ -122,6 +127,8 @@ const mapDispatchToProps = {
   removeMessage,
   incrementCounter,
   decrementCounter,
+  incrementLocalCounter,
+  decrementLocalCounter,
 }
 
 export default connect(
