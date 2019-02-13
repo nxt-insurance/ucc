@@ -7,7 +7,7 @@ import {
   removeMessage,
   incrementCounter,
   decrementCounter,
-} from './actionCreators'
+} from './store/actionCreators'
 import Button from './components/Button.js'
 import MessagesToType from './components/MessagesToType'
 import { MessagesToShow } from './components/MessagesToShow'
