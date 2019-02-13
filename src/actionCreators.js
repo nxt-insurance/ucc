@@ -6,13 +6,6 @@ export const addQuestion = () => {
   }
 }
 
-export const loadQuestions = result => {
-  return {
-    type: actionTypes.LOAD_QUESTIONS,
-    data: result,
-  }
-}
-
 export const addAnswer = () => {
   return {
     type: actionTypes.ADD_ANSWER,

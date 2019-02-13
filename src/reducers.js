@@ -1,5 +1,3 @@
-// @flow
-
 import * as actionTypes from './actionTypes'
 
 export const chatReducer = (
