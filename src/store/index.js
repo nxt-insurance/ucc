@@ -1,10 +1,9 @@
 import { createStore, combineReducers } from 'redux'
 
-import { chatReducer, counterReducer } from './reducers'
+import { chatReducer } from './reducers'
 
 const appReducer = combineReducers({
   chat: chatReducer,
-  counter: counterReducer,
 })
 
 const store = createStore(

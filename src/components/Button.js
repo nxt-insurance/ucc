@@ -22,11 +22,9 @@ class Button extends React.Component {
     }
 
     return (
-      <div>
-        <button className={css(buttonStyles)} onClick={this.props.onClick}>
-          {this.props.text}
-        </button>
-      </div>
+      <button className={css(buttonStyles)} onClick={this.props.onClick}>
+        {this.props.text}
+      </button>
     )
   }
 }

@@ -43,16 +43,3 @@ export const chatReducer = (
       return state
   }
 }
-
-export const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case actionTypes.INCREMENT_COUNTER:
-      return ++state
-
-    case actionTypes.DECREMENT_COUNTER:
-      return state <= 0 ? 0 : --state
-
-    default:
-      return state
-  }
-}

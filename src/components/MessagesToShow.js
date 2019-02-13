@@ -18,11 +18,7 @@ const MessagesToShow = props => {
   return (
     <div className={css(messageContainer)} key={`questionToShow-${props.index}`}>
       <img className={css(avatar)} src={carla} alt="Avatar of Carla" />
-      <div className={css(message)}>
-        {props.item}
-        &nbsp;
-        {props.hasCounter && <span>The current counter is {props.counter}</span>}
-      </div>
+      <div className={css(message)}>{props.item}</div>
     </div>
   )
 }

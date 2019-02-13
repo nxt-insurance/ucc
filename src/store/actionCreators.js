@@ -30,15 +30,3 @@ export const removeMessage = index => {
     },
   }
 }
-
-export const incrementCounter = () => {
-  return {
-    type: actionTypes.INCREMENT_COUNTER,
-  }
-}
-
-export const decrementCounter = () => {
-  return {
-    type: actionTypes.DECREMENT_COUNTER,
-  }
-}
