@@ -1,5 +1,5 @@
 import React from 'react'
-import carla from '../carla.png'
+import carla from '../assets/carla.png'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
 const MessagesToShow = props => {
