@@ -6,6 +6,7 @@ const MessagesToType = props => {
   const index = props.index
   const value = props.value
   const type = props.type
+  const localCounter = props.localCounter
 
   let inputStyle = [styles.messageInput]
   let messageContainer = [styles.messageContainer]
@@ -14,11 +15,10 @@ const MessagesToType = props => {
     inputStyle.push(styles.answer)
     messageContainer.push(styles.answerPosition)
   }
-
   return (
     <div className={css(messageContainer)} key={`question-${index}`}>
       <div className={css(styles.message)}>
-        <label className={css(styles.messageLabel)} htmlFor={`question-${index}`}>
+        <label className={css(styles.messageLabel)} htmlFor={`question-${props.localCounter}`}>
           {type === 'question' ? 'Question text' : 'Answer text'}
         </label>
         <br />
@@ -27,10 +27,12 @@ const MessagesToType = props => {
           onChange={event => props.handleChangeMessage(index, event.target.value)}
           type="text"
           id={`question-${index}`}
-          value={value}
+          value={`${value} Local number: ${localCounter}`}
           placeholder="Write your question here"
         />
       </div>
+      <button onClick={event => props.handleIncrementLocalCounter(index, event.target)}>+</button>
+      <button onClick={event => props.handleDecrementLocalCounter(index, event.target)}>-</button>
       <div>
         {index !== 0 && (
           <Button

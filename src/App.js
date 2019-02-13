@@ -5,6 +5,8 @@ import {
   addQuestion,
   changeMessage,
   removeMessage,
+  incrementLocalCounter,
+  decrementLocalCounter,
   incrementCounter,
   decrementCounter,
 } from './actionCreators'
@@ -44,16 +46,21 @@ class App extends Component {
           <div className={css(styles.counter)}>Start counting: {this.props.counter}</div>
           <div>
             <div>
-              {this.props.messages.map((value, index) => (
-                <MessagesToType
-                  index={index}
-                  value={value.text}
-                  type={value.type}
-                  key={'write-q' + index}
-                  handleChangeMessage={this.props.changeMessage}
-                  handleRemoveMessage={this.props.removeMessage}
-                />
-              ))}
+              {this.props.messages.map((value, index) => {
+                return (
+                  <MessagesToType
+                    index={index}
+                    value={value.text}
+                    type={value.type}
+                    key={'write-q' + index}
+                    handleChangeMessage={this.props.changeMessage}
+                    handleRemoveMessage={this.props.removeMessage}
+                    handleIncrementLocalCounter={this.props.incrementLocalCounter}
+                    handleDecrementLocalCounter={this.props.decrementLocalCounter}
+                    localCounter={value.localCounter}
+                  />
+                )
+              })}
             </div>
           </div>
         </div>
@@ -65,7 +72,6 @@ class App extends Component {
                 index={index}
                 item={item.text}
                 type={item.type}
-                hasCounter={index === array.length - 1}
                 counter={this.props.counter}
               />
             ))}
@@ -122,6 +128,8 @@ const mapDispatchToProps = {
   removeMessage,
   incrementCounter,
   decrementCounter,
+  incrementLocalCounter,
+  decrementLocalCounter,
 }
 
 export default connect(
