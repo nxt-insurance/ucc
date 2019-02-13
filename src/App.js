@@ -5,7 +5,7 @@ import { css, StyleSheet } from 'aphrodite/no-important'
 import { addAnswer, addQuestion, changeMessage, removeMessage } from './store/actionCreators'
 import Button from './components/Button.js'
 import MessagesToType from './components/MessagesToType'
-import { MessagesToShow } from './components/MessagesToShow'
+import MessagesToShow from './components/MessagesToShow'
 
 const App = props => {
   return (
@@ -30,11 +30,9 @@ const App = props => {
       </div>
 
       <div className={css(styles.seeSection)}>
-        <div>
-          {props.messages.map((item, index, array) => (
-            <MessagesToShow key={'see-q' + index} index={index} item={item.text} type={item.type} />
-          ))}
-        </div>
+        {props.messages.map((item, index, array) => (
+          <MessagesToShow key={'see-q' + index} index={index} item={item.text} type={item.type} />
+        ))}
       </div>
     </div>
   )
