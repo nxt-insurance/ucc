@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes'
 
 export const chatReducer = (
-  state = [{ text: 'question 0', type: 'question' }, { text: 'answer 0', type: 'answer' }],
+  state = [],
   action
 ) => {
   switch (action.type) {
@@ -9,7 +9,7 @@ export const chatReducer = (
       return [
         ...state,
         {
-          text: 'question',
+          text: 'Question',
           type: 'question',
         },
       ]
@@ -18,7 +18,7 @@ export const chatReducer = (
       return [
         ...state,
         {
-          text: 'answer',
+          text: 'Answer',
           type: 'answer',
         },
       ]
