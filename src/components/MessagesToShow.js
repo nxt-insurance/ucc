@@ -1,8 +1,8 @@
 import React from 'react'
-import carla from '../carla.png'
+import carla from '../assets/carla.png'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
-function MessagesToShow(props) {
+const MessagesToShow = props => {
   const type = props.type
 
   let messageContainer = [styles.messageContainer]
@@ -18,10 +18,7 @@ function MessagesToShow(props) {
   return (
     <div className={css(messageContainer)} key={`questionToShow-${props.index}`}>
       <img className={css(avatar)} src={carla} alt="Avatar of Carla" />
-      <div className={css(message)}>
-        {props.item}&nbsp;
-        {props.hasCounter && <span>The current counter is {props.counter}</span>}
-      </div>
+      <div className={css(message)}>{props.item}</div>
     </div>
   )
 }
@@ -64,4 +61,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export { MessagesToShow }
+export default MessagesToShow

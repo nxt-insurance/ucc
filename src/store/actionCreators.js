@@ -6,13 +6,6 @@ export const addQuestion = () => {
   }
 }
 
-export const loadQuestions = result => {
-  return {
-    type: actionTypes.LOAD_QUESTIONS,
-    data: result,
-  }
-}
-
 export const addAnswer = () => {
   return {
     type: actionTypes.ADD_ANSWER,
@@ -35,17 +28,5 @@ export const removeMessage = index => {
     data: {
       index,
     },
-  }
-}
-
-export const incrementCounter = () => {
-  return {
-    type: actionTypes.INCREMENT_COUNTER,
-  }
-}
-
-export const decrementCounter = () => {
-  return {
-    type: actionTypes.DECREMENT_COUNTER,
   }
 }
